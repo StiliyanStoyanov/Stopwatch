@@ -1,0 +1,23 @@
+{
+  "name": "stopwatch",
+  "version": "1.0.0",
+  "description": "stopwatch app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StiliyanStoyanov/stopwatch.git"
+  },
+  "author": "Stiliyan Stoyanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StiliyanStoyanov/stopwatch/issues"
+  },
+  "homepage": "https://github.com/StiliyanStoyanov/stopwatch#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "electron": "^24.1.3"
+  }
+}
