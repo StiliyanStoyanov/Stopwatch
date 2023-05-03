@@ -29,3 +29,9 @@
 import './index.css';
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
+
+const startBtn = document.getElementById('startBtn');
+
+startBtn.addEventListener('click', () => {
+    console.log('start button in renderer!')
+})
