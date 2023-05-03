@@ -3,5 +3,6 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
-  -webkit-app-region: drag;
+  -webkit-app-region: no-drag;
+  -webkit-user-select: all;
 }
