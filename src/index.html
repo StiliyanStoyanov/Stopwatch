@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Stopwatch</title>
-
-  </head>
-  <body>
-    <button type="button" id="playButton" class="playButton"></button>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Stopwatch</title>
+</head>
+<body>
+  <div class="main-container">
+    <div id="timers">
+      <div class="flex-end">
+        <div>
+          <div class="time-display">
+            <span id="hours">00</span>
+            <span class="pad-relative">:</span>
+          </div>
+          <div class="time-description">hr</div>
+        </div>
+        <div>
+          <div class="time-display">
+            <span id="minutes">00</span>
+            <span class="pad-relative">:</span>
+          </div>
+          <div class="time-description">min</div>
+        </div>
+        <div>
+          <div class="time-display">
+            <span id="seconds">00</span>
+            <span>.</span>
+          </div>
+          <div class="time-description">sec</div>
+        </div>
+        <div>
+          <div id="milliseconds" class="time-display-small">
+            <span>00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="controlls" class="flex">
+      <div>
+        <button id="start-pause-button" type="button" class="button no-drag">
+          <div class="background"></div>
+          <div class="icon">
+            <div class="part left"></div>
+            <div class="part right"></div>
+          </div>
+          <div class="pointer"></div>
+      </div>
+      <div class="flex sb-container">
+        <button type="button" id="reset-button" class="sb sb-inactive no-user-select" disabled="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2h4" />
+            <path d="M12 14v-4" />
+            <path d="M4 13a8 8 0 018-7 8 8 0 11-5.3 14L4 17.6" />
+            <path d="M9 17H4v5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
