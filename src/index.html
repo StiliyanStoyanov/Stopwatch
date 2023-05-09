@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <title>Stopwatch</title>
 </head>
+
 <body>
+  <button type="button" id="keep-on-top" style="display: block;">Keep on top</button>
+  <button type="button" id="minimize" style="display: none;">minimize</button>
   <div class="main-container">
     <div id="timers">
       <div class="flex-end">
@@ -37,19 +41,13 @@
       </div>
     </div>
     <div id="controlls" class="flex">
+      <button id="start-pause-button" class="flex play-pause-button">
+        <div class="flex play-pause"></div>
+      </button>
       <div>
-        <button id="start-pause-button" type="button" class="button no-drag">
-          <div class="background"></div>
-          <div class="icon">
-            <div class="part left"></div>
-            <div class="part right"></div>
-          </div>
-          <div class="pointer"></div>
-      </div>
-      <div class="flex sb-container">
-        <button type="button" id="reset-button" class="sb sb-inactive no-user-select" disabled="true">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" id="reset-button" class="sb" disabled="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+            stroke="#3f3f3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 2h4" />
             <path d="M12 14v-4" />
             <path d="M4 13a8 8 0 018-7 8 8 0 11-5.3 14L4 17.6" />
@@ -60,4 +58,5 @@
     </div>
   </div>
 </body>
+
 </html>
