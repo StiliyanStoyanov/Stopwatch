@@ -13,15 +13,21 @@ if (require('electron-squirrel-startup')) {
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 300,
-    width: 800,
+    useContentSize: true,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
-    frame: false,
-    resizable: false
+    autoHideMenuBar: true
   });
 
+  ipcMain.on('keep-on-top', () => {
+    mainWindow.setAlwaysOnTop(!mainWindow.isAlwaysOnTop());
+  })
+
+  ipcMain.on('minimize', () => {
+    mainWindow.setSize(165, 160);
+  })
+  
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
