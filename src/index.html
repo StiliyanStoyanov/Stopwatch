@@ -7,8 +7,6 @@
 </head>
 
 <body>
-  <button type="button" id="keep-on-top" style="display: block;">Keep on top</button>
-  <button type="button" id="minimize" style="display: none;">minimize</button>
   <div class="main-container">
     <div id="timers">
       <div class="flex-end">
@@ -33,7 +31,20 @@
           </div>
           <div class="time-description">sec</div>
         </div>
-        <div>
+        <div style="position: relative;">
+          <button type="button" id="keep-on-top" class="keep-on-top-button" title="Keep on top">
+            <svg fill="#3f3f3f" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 52 52">
+                <g>
+                  <path
+                    d="M48.7,2H29.6C28.8,2,28,2.5,28,3.3v3C28,7.1,28.7,8,29.6,8h7.9c0.9,0,1.4,1,0.7,1.6l-17,17 c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0l17-17c0.6-0.6,1.6-0.2,1.6,0.7v7.9c0,0.8,0.8,1.7,1.6,1.7h2.9 c0.8,0,1.5-0.9,1.5-1.7v-19C50,2.5,49.5,2,48.7,2z">
+                  </path>
+                  <path
+                    d="M36.3,25.5L32.9,29c-0.6,0.6-0.9,1.3-0.9,2.1v11.4c0,0.8-0.7,1.5-1.5,1.5h-21C8.7,44,8,43.3,8,42.5v-21 C8,20.7,8.7,20,9.5,20H21c0.8,0,1.6-0.3,2.1-0.9l3.4-3.4c0.6-0.6,0.2-1.7-0.7-1.7H6c-2.2,0-4,1.8-4,4v28c0,2.2,1.8,4,4,4h28 c2.2,0,4-1.8,4-4V26.2C38,25.3,36.9,24.9,36.3,25.5z">
+                  </path>
+                </g>
+              </svg>
+          </button>
           <div id="milliseconds" class="time-display-small">
             <span>00</span>
           </div>
@@ -46,13 +57,20 @@
       </button>
       <div>
         <button type="button" id="reset-button" class="sb" disabled="true">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"
-            stroke="#3f3f3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 2h4" />
-            <path d="M12 14v-4" />
-            <path d="M4 13a8 8 0 018-7 8 8 0 11-5.3 14L4 17.6" />
-            <path d="M9 17H4v5" />
-          </svg>
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="100px" 
+            height="100px" 
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#3f3f3f"
+            stroke-width="2"
+          >
+          <path d="M10 2h4" />
+          <path d="M12 14v-4" />
+          <path d="M4 13a8 8 0 018-7 8 8 0 11-5.3 14L4 17.6" />
+          <path d="M9 17H4v5" />
+        </svg>
         </button>
       </div>
     </div>
