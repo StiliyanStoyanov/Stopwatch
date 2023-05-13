@@ -14,6 +14,7 @@ export function stopwatch(): stopwatchInterface {
     let intervalId: NodeJS.Timer;
     let paused = true;
     let [hours, minutes, seconds, milliseconds] = [0, 0, 0, 0];
+    let flagedTimers = [];
     
     const startTimer = (onIntervalTick: onIntervalTickCallback) => {
         clearInterval(intervalId);
@@ -47,7 +48,7 @@ export function stopwatch(): stopwatchInterface {
 
 export function stopwatchSetup() {
     const startPauseButton = document.getElementById('start-pause-button');
-    const playPause = document.getElementById('play-pause')
+    const flagButton = document.getElementById('flag-button');
     const resetButton = document.getElementById('reset-button') as HTMLButtonElement;
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
@@ -66,7 +67,7 @@ export function stopwatchSetup() {
             return;
         }
         if (!isRunning) {
-            resetButton.classList.toggle('sb-active');
+            resetButton.classList.toggle('active-stroke');
             resetButton.disabled = false;
         }
 
@@ -84,7 +85,7 @@ export function stopwatchSetup() {
     resetButton.addEventListener('click', () => {  
         console.log('timer is reset');
         if (!paused) startPauseButton.classList.toggle("active");
-        resetButton.classList.toggle('sb-active');
+        resetButton.classList.toggle('active-stroke');
         resetButton.disabled = true;
         paused = true;
         isRunning = false;
@@ -93,5 +94,9 @@ export function stopwatchSetup() {
         secondsElement.textContent = '00'
         millisecondsElement.textContent = '00'
         resetTimer();
+    })
+
+    flagButton.addEventListener('click', () => {
+        console.log('flag clicked');
     })
 }
