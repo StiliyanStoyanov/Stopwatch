@@ -14,6 +14,9 @@ const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     useContentSize: true,
+    minWidth: 225,
+    minHeight: 140,
+    alwaysOnTop: false,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -22,11 +25,7 @@ const createWindow = (): void => {
 
   ipcMain.on('keep-on-top', () => {
     mainWindow.setAlwaysOnTop(!mainWindow.isAlwaysOnTop());
-  })
-
-  ipcMain.on('minimize', () => {
-    mainWindow.setSize(165, 160);
-  })
+  });
   
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
