@@ -22,8 +22,12 @@ body {
 }
 
 .main-container {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 60px 0;
+  max-width: 580px;
+  height: 100vh;
+  max-height: 700px;
 }
 
 .relative {
@@ -166,6 +170,29 @@ body {
   position: relative;
   user-select: none;
   padding-left: 16px 0px 0px 24px;
+}
+
+#times-tracker {
+  overflow: auto;
+  margin: 20px 0 70px 0;
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.3em;
+}
+
+
+section > ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  line-height: 100%;
+}
+
+section > h3 {
+  margin: 0;
+}
+li {
+  margin: 8px 0px;
 }
 
 .time-display-small {
