@@ -1,6 +1,5 @@
-type times = [hours: number, minutes: number, seconds: number, milliseconds: number];
-type currentTime = [hours: string, minutes: string, seconds: string, milliseconds: string];
-type onIntervalTickCallback = (params: currentTime) => void
+type timesString = [hours: string, minutes: string, seconds: string, milliseconds: string];
+type onIntervalTickCallback = (params: timesString) => void
 interface stopwatchInterface {
     startTimer: (onIntervalTick: onIntervalTickCallback) => void
     pauseTimer: () => void;
@@ -8,44 +7,49 @@ interface stopwatchInterface {
     lapTimer: () => void;
 }
 
-function formatTime(time: number): string {
-    return time <= 9 ? `0${time}` : time.toString();
+function createElementWithText(tagName: keyof HTMLElementTagNameMap, textContent: string) {
+    const element = document.createElement(tagName);
+    element.textContent = textContent
+    return element;
+    
+}
+
+function formatTime(currentTime: number): timesString {
+    return [
+        Math.floor(currentTime / 6000),
+        Math.floor(currentTime / 600),
+        Math.floor(currentTime / 10), 
+        currentTime % 10 * 10
+    ].map(time => time <= 9 ? `0${time}` : time.toString()) as timesString
 }
 
 export function stopwatch(): stopwatchInterface {
     let intervalId: NodeJS.Timer;
-    let paused = true;
-    let [hours, minutes, seconds, milliseconds]: times = [0, 0, 0, 0];
-    let lapTimers: times[] = [];
+    let currentTime = 0;
+    let previousTimer = 0;
+    let fastestTimer = 0;
+    let slowestTimer = 0;
     
     const startTimer = (onIntervalTick: onIntervalTickCallback) => {
         clearInterval(intervalId);
-        paused = false;
         intervalId = setInterval(() => {
-            minutes === 60 && (hours += 1) && (minutes = 0);
-            seconds === 60 && (minutes += 1) && (seconds = 0);
-            milliseconds+=10;
-            milliseconds === 100 && (seconds += 1) && (milliseconds = 0);
-            onIntervalTick([formatTime(hours), formatTime(minutes), formatTime(seconds), formatTime(milliseconds)]);
+            currentTime++;
+            onIntervalTick(formatTime(currentTime));
         }, 100);
     }
 
     const pauseTimer = () => {
         clearInterval(intervalId);
-        paused = true;
     }
 
     const resetTimer = () => {
         clearInterval(intervalId);
-        paused = true;
-        lapTimers = [];
-        hours = 0; minutes = 0; seconds = 0; milliseconds = 0;
+        currentTime = 0;
     }
 
     const lapTimer = () => {
-        console.log('flag button clicked')
-        lapTimers.push([hours, minutes, seconds, milliseconds])
-        console.log(lapTimers)
+        currentTime - fastestTimer
+        console.log('flag button clicked');
     }
 
     return {
@@ -64,12 +68,20 @@ export function stopwatchSetup() {
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
     const millisecondsElement = document.getElementById('milliseconds');
+    const laps = document.getElementById('laps');
+    const time = document.getElementById('time');
+    const total = document.getElementById('total');
+    const lapsHeading = createElementWithText('h3', 'Laps');
+    const timeHeading = createElementWithText('h3', 'Time');
+    const totalHeading = createElementWithText('h3', 'Total');
+
     let paused = true;
     let isRunning = false;
     const { startTimer, pauseTimer, resetTimer, lapTimer } = stopwatch();
 
     startPauseButton.addEventListener('click', () => {
         startPauseButton.classList.toggle("active");
+        // Pauses the timer if it is not paused
         if (!paused) {
             console.log('timer is paused');
             paused = true;
@@ -78,16 +90,20 @@ export function stopwatchSetup() {
             pauseTimer();
             return;
         }
+        // Keeps reset enabled only when there is time on the timer
         if (!isRunning) {
             resetButton.classList.toggle('active-stroke');
             resetButton.disabled = false;
         }
 
         console.log('timer is running');
+        // Disables flag button when timer is paused
         flagButton.disabled = false;
         flagButton.classList.add('active-fill');
+        // Updates timer state
         paused = false;
         isRunning = true;
+        // Interval callback per 100ms tick with current times as an array
         startTimer(([hours, minutes, seconds, milliseconds]) => {
             hoursElement.textContent = hours;
             minutesElement.textContent = minutes;
@@ -98,17 +114,28 @@ export function stopwatchSetup() {
 
     resetButton.addEventListener('click', () => {  
         console.log('timer is reset');
+        // Changes button state to play if it is currently running
         if (!paused) startPauseButton.classList.toggle('active');
+
+        // Disables and resets flag time track and reset button states to disabled on reset
         resetButton.classList.toggle('active-stroke');
         resetButton.disabled = true;
         flagButton.disabled = true;
+        flagButton.classList.remove('active-fill');
+        // Updates timer status
         paused = true;
         isRunning = false;
-        flagButton.classList.remove('active-fill');
+        // Resets main timer elements
         hoursElement.textContent = '00'
         minutesElement.textContent = '00'
         secondsElement.textContent = '00'
         millisecondsElement.textContent = '00'
+
+        laps.textContent = ''
+        time.textContent = ''
+        total.textContent = ''
+
+        // Clears timers in utility function
         resetTimer();
     })
 
