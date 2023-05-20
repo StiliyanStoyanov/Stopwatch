@@ -1,36 +1,19 @@
-type timesString = [hours: string, minutes: string, seconds: string, milliseconds: string];
-type onIntervalTickCallback = (params: timesString) => void
-interface stopwatchInterface {
-    startTimer: (onIntervalTick: onIntervalTickCallback) => void
-    pauseTimer: () => void;
-    resetTimer: () => void;
-    lapTimer: () => void;
-}
+import { TimeStringArray, formatTime, formatTimeToString } from "./stopwatchUtil";
+import { createTimeTrackerElement, createElementWithText } from "./stopwatchViewUtil";
+type onIntervalTick = (params: TimeStringArray) => void
+type onLap = (lapCount: number, currentLapTime: string, totalTime: string, isFastest: boolean, isSlowest: boolean) => void
 
-function createElementWithText(tagName: keyof HTMLElementTagNameMap, textContent: string) {
-    const element = document.createElement(tagName);
-    element.textContent = textContent
-    return element;
-    
-}
-
-function formatTime(currentTime: number): timesString {
-    return [
-        Math.floor(currentTime / 6000),
-        Math.floor(currentTime / 600),
-        Math.floor(currentTime / 10), 
-        currentTime % 10 * 10
-    ].map(time => time <= 9 ? `0${time}` : time.toString()) as timesString
-}
-
-export function stopwatch(): stopwatchInterface {
+function stopwatch () {
     let intervalId: NodeJS.Timer;
-    let currentTime = 0;
-    let previousTimer = 0;
+    let currentTime = 2159960;
+    let lapCount = 0;
+    let previousLapTimer = 0;
     let fastestTimer = 0;
     let slowestTimer = 0;
     
-    const startTimer = (onIntervalTick: onIntervalTickCallback) => {
+
+
+    function startTimer(onIntervalTick: onIntervalTick) {
         clearInterval(intervalId);
         intervalId = setInterval(() => {
             currentTime++;
@@ -45,7 +28,14 @@ export function stopwatch(): stopwatchInterface {
     const resetTimer = () => {
         clearInterval(intervalId);
         currentTime = 0;
+        currentTime = 0;
+        lapCount = 0;
+        previousLapTimer = 0
+        fastestTimer = 0;
+        slowestTimer = 0;
     }
+    }
+        const isSlowest = currentLapTime > slowestTimer;
 
     const lapTimer = () => {
         currentTime - fastestTimer
