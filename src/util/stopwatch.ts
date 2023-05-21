@@ -50,7 +50,7 @@ function stopwatch () {
     }
 }
 
-export function stopwatchSetup() {
+export function stopwatchViewSetup() {
     const startPauseButton = document.getElementById('start-pause-button');
     const flagButton = document.getElementById('flag-button') as HTMLButtonElement;
     const resetButton = document.getElementById('reset-button') as HTMLButtonElement;
@@ -58,15 +58,10 @@ export function stopwatchSetup() {
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
     const millisecondsElement = document.getElementById('milliseconds');
-    const laps = document.getElementById('laps');
-    const time = document.getElementById('time');
-    const total = document.getElementById('total');
-    const lapsHeading = createElementWithText('h3', 'Laps');
-    const timeHeading = createElementWithText('h3', 'Time');
-    const totalHeading = createElementWithText('h3', 'Total');
-
+    const lapTimers = document.getElementById('lap-timers');
     let paused = true;
     let isRunning = false;
+
     const { startTimer, pauseTimer, resetTimer, lapTimer } = stopwatch();
 
     startPauseButton.addEventListener('click', () => {

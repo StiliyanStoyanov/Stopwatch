@@ -1,7 +1,7 @@
 import './index.css';
-import { stopwatchSetup } from "./util/stopwatch";
+import { stopwatchViewSetup } from "./util/stopwatch";
 
-stopwatchSetup();
+stopwatchViewSetup();
 
 const keepOnTopButton = document.getElementById('keep-on-top-button');
 
@@ -10,9 +10,5 @@ keepOnTopButton.addEventListener('click', () => {
     keepOnTopButton.classList.toggle("active-fill");
     window.electronAPI.keepOnTop();
 })
-
-// minimize.addEventListener('click', () => {
-//     window.electronAPI.minimize();
-// })
 
 
