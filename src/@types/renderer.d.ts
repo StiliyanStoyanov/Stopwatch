@@ -1,10 +1,9 @@
-export interface IElectronAPI {
-    keepOnTop: () => void,
-    minimize: () => void
+export interface electronAPI {
+    keepOnTop: () => void
 }
 
 declare global {
     interface Window {
-        electronAPI: IElectronAPI
+        electronAPI: electronAPI
     }
 }
