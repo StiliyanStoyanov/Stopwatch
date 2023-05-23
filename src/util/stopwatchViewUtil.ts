@@ -7,21 +7,25 @@ export function createTimeTrackerElement(laps: number, lapTime: string, totalTim
             <ul id="laps">
                 <li>
                     <span>${laps}</span>
-                    <span id="fastest">Fastest</span>
-                    <span id="slowest">Slowest</span>
+                    <span id="fastest">&nbspFastest</span>
+                    <span id="slowest">&nbspSlowest</span>
                 </li>
             </ul>
         </section>
         <section>
             <h3>Time</h3>
             <ul id="time">
-                <li>${lapTime}</li>
+                <li>
+                    <span>${lapTime}</span>
+                </li>
             </ul>
         </section>
         <section>
             <h3>Total</h3>
             <ul id="total">
-                <li>${totalTime}</li>
+                <li>
+                    <span> ${totalTime}</span>
+                </li>
             </ul>
         </section>
     </div>
