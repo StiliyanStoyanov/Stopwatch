@@ -201,7 +201,8 @@ section>h3 {
   margin: 0;
 }
 
-li {
+#laps > li, #time > li, #total > li {
+  display: flex;
   margin: 8px 0px;
 }
 
@@ -247,5 +248,9 @@ li {
     height: 1em;
     right: -10px;
     top: -16px;
+  }
+
+  #times-tracker {
+    font-size: 0.4em;
   }
 }
