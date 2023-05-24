@@ -68,7 +68,6 @@ export function stopwatchViewSetup() {
         startPauseButton.classList.toggle("active");
         // Pauses the timer if it is not paused
         if (!paused) {
-            console.log('timer is paused');
             paused = true;
             flagButton.disabled = true;
             flagButton.classList.remove('active-fill');
@@ -80,8 +79,6 @@ export function stopwatchViewSetup() {
             resetButton.classList.toggle('active-stroke');
             resetButton.disabled = false;
         }
-
-        console.log('timer is running');
         // Disables flag button when timer is paused
         flagButton.disabled = false;
         flagButton.classList.add('active-fill');
@@ -98,10 +95,8 @@ export function stopwatchViewSetup() {
     })
 
     resetButton.addEventListener('click', () => {  
-        console.log('timer is reset');
         // Changes button state to play if it is currently running
         if (!paused) startPauseButton.classList.toggle('active');
-
         // Disables and resets flag time track and reset button states to disabled on reset
         resetButton.classList.toggle('active-stroke');
         resetButton.disabled = true;
@@ -111,15 +106,11 @@ export function stopwatchViewSetup() {
         paused = true;
         isRunning = false;
         // Resets main timer elements
+        lapTimers.textContent = ''
         hoursElement.textContent = '00'
         minutesElement.textContent = '00'
         secondsElement.textContent = '00'
         millisecondsElement.textContent = '00'
-
-        laps.textContent = ''
-        time.textContent = ''
-        total.textContent = ''
-
         // Clears timers in utility function
         resetTimer();
     })
