@@ -5,14 +5,12 @@ type onLap = (lapCount: number, currentLapTime: string, totalTime: string, isFas
 
 function stopwatch () {
     let intervalId: NodeJS.Timer;
-    let currentTime = 2159960;
+    let currentTime = 0;
     let lapCount = 0;
-    let previousLapTimer = 0;
+    let previousLapTotal = 0;
     let fastestTimer = 0;
     let slowestTimer = 0;
     
-
-
     function startTimer(onIntervalTick: onIntervalTick) {
         clearInterval(intervalId);
         intervalId = setInterval(() => {
@@ -30,16 +28,28 @@ function stopwatch () {
         currentTime = 0;
         currentTime = 0;
         lapCount = 0;
-        previousLapTimer = 0
+        previousLapTotal = 0
         fastestTimer = 0;
         slowestTimer = 0;
     }
+
+    const lapTimer = (onLap: onLap) => {
+        lapCount++;
+        const currentLapTime = currentTime - previousLapTotal;
+        previousLapTotal = currentTime;
+        if (lapCount === 1) {
+            slowestTimer = currentLapTime
+            fastestTimer = currentLapTime
     }
         const isSlowest = currentLapTime > slowestTimer;
+        const isFastest = currentLapTime < fastestTimer;
+        isSlowest && (slowestTimer = currentLapTime);
+        isFastest && (fastestTimer = currentLapTime);
 
-    const lapTimer = () => {
-        currentTime - fastestTimer
-        console.log('flag button clicked');
+        const currentLapTimeString = formatTimeToString(currentLapTime);
+        const totalTimeString = formatTimeToString(currentTime);
+
+        onLap(lapCount, currentLapTimeString, totalTimeString, isFastest, isSlowest)
     }
 
     return {
