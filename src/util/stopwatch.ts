@@ -10,7 +10,7 @@ function stopwatch () {
     let previousLapTotal = 0;
     let fastestTimer = 0;
     let slowestTimer = 0;
-    
+
     function startTimer(onIntervalTick: onIntervalTick) {
         clearInterval(intervalId);
         intervalId = setInterval(() => {
@@ -40,7 +40,7 @@ function stopwatch () {
         if (lapCount === 1) {
             slowestTimer = currentLapTime
             fastestTimer = currentLapTime
-    }
+        }
         const isSlowest = currentLapTime > slowestTimer;
         const isFastest = currentLapTime < fastestTimer;
         isSlowest && (slowestTimer = currentLapTime);
@@ -104,7 +104,7 @@ export function stopwatchViewSetup() {
         })
     })
 
-    resetButton.addEventListener('click', () => {  
+    resetButton.addEventListener('click', () => {
         // Changes button state to play if it is currently running
         if (!paused) startPauseButton.classList.toggle('active');
         // Disables and resets flag time track and reset button states to disabled on reset
@@ -126,6 +126,32 @@ export function stopwatchViewSetup() {
     })
 
     flagButton.addEventListener('click', () => {
-        lapTimer();
+        lapTimer((lapCount, currentLapTime, totalTime, isFastest, isSlowest) => {
+            if (!lapTimers.firstChild) {
+                const timesTrackerElement = createTimeTrackerElement(lapCount, currentLapTime, totalTime);
+                lapTimers.appendChild(timesTrackerElement);
+                return;
+            }
+
+            const lapsUl = document.getElementById('laps');
+            const timeUl = document.getElementById('time');
+            const totalUl = document.getElementById('total');
+            const lapCountLi = document.createElement('li');
+            const lapCountSpan = createElementWithText('span', lapCount);
+            lapCountLi.append(lapCountSpan);
+            const timeLi = createElementWithText('li', currentLapTime);
+            const totalLi = createElementWithText('li', totalTime);
+            if (isFastest) {
+                lapCountLi.append(document.getElementById('fastest'));
+            }
+
+            if (isSlowest) {
+                lapCountLi.append(document.getElementById('slowest'));
+            }
+
+            lapsUl.append(lapCountLi);
+            timeUl.append(timeLi);
+            totalUl.append(totalLi);
+        });
     })
 }
