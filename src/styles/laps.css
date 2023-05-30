@@ -1,0 +1,37 @@
+.inner-width {
+    margin: 0 auto;
+    max-width: 580px;
+    width: 100%;
+}
+
+#lap-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    font-size: 0.3em;
+}
+
+#lap-headers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.3em;
+    line-height: 100%;
+
+    & h3 {
+        margin: 0;
+    }
+}
+
+#lap-timers {
+    display: flex;
+}
+
+#laps>li:only-child {
+    #fastest {
+        display: none;
+    }
+
+    #slowest {
+        display: none;
+    }
+}

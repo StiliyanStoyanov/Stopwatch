@@ -1,0 +1,30 @@
+#timer {
+  position: relative;
+  user-select: none;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 16px 0px 0px 24px;
+}
+
+.time-display-small {
+  font-size: 0.5em;
+  line-height: 100%;
+  padding-bottom: 81%;
+}
+
+.time-description {
+  line-height: 100%;
+  text-align: center;
+  font-size: 0.4em;
+  padding-right: 0.5em;
+}
+
+.pad-relative {
+  position: relative;
+  bottom: 0.1em;
+}
+
+.pad-relative-small {
+  position: relative;
+  bottom: 0.05em;
+}

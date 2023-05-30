@@ -1,0 +1,99 @@
+.button {
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    fill: var(--secondary-inactive-color);
+    border: 0;
+    border-radius: 50%;
+    margin: 0;
+    background-color: var(--secondary-inactive-background);
+}
+
+.active-fill {
+    & svg {
+        fill: var(--secondary-active-color);
+    }
+}
+
+.active-stroke {
+    & svg {
+        stroke: var(--secondary-active-color);
+    }
+}
+
+#reset-button {
+    padding: 12px 12px 16px 12px;
+}
+
+#flag-button {
+    padding: 10px 6px 6px 6px;
+}
+
+#keep-on-top-button {
+    position: absolute;
+    right: -12px;
+    top: -32px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+}
+
+#start-pause-button {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 0;
+    background-color: var(--button-background);
+
+    &:active {
+        background-color: var(--button-active-background);
+    }
+}
+
+.start-pause {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    --length: 32px;
+    --pause-gap: calc(100% / 3);
+    --icon-color: #FFF8;
+    width: var(--length);
+    height: var(--length);
+    background-color: transparent;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: inherit;
+        height: var(--length);
+        background-color: var(--icon-color);
+        transition-property: clip-path, background-color, opacity;
+        transition-duration: 0.25s;
+        transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    }
+
+    &::before {
+        clip-path: polygon(0% 0%, 100% 50%, 100% 50%, 0% 100%);
+        opacity: 0;
+    }
+
+    &::after {
+        clip-path: polygon(0% 0%, 100% 50%, 100% 50%, 0% 100%);
+    }
+
+    .active & {
+        &::before {
+            clip-path: polygon(0% 0%, calc(50% - var(--pause-gap) / 2) 0%, calc(50% - var(--pause-gap) / 2) 100%, 0% 100%);
+            opacity: 1;
+        }
+
+        &::after {
+            clip-path: polygon(calc(50% + var(--pause-gap) / 2) 0%, 100% 0%, 100% 100%, calc(50% + var(--pause-gap) / 2) 100%);
+        }
+    }
+}
