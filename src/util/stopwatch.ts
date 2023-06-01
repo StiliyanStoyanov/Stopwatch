@@ -1,5 +1,5 @@
 import { TimeStringArray, formatTime, formatTimeToString } from "./stopwatchUtil";
-import { createTimeTrackerElement, createElementWithText } from "./stopwatchViewUtil";
+import { createLapHeader, createLapTracker, createLapRowElement } from "./stopwatchViewUtil";
 type onIntervalTick = (params: TimeStringArray) => void
 type onLap = (lapCount: number, currentLapTime: string, totalTime: string, isFastest: boolean, isSlowest: boolean) => void
 
@@ -62,13 +62,14 @@ function stopwatch () {
 
 export function stopwatchViewSetup() {
     const startPauseButton = document.getElementById('start-pause-button');
-    const flagButton = document.getElementById('flag-button') as HTMLButtonElement;
+    const lapButton = document.getElementById('lap-button') as HTMLButtonElement;
     const resetButton = document.getElementById('reset-button') as HTMLButtonElement;
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
     const secondsElement = document.getElementById('seconds');
     const millisecondsElement = document.getElementById('milliseconds');
-    const lapTimers = document.getElementById('lap-timers');
+    const lapHeaders = document.getElementById('laps-headers');
+    const lapTimers = document.getElementById('laps-timers');
     let paused = true;
     let isRunning = false;
 
@@ -79,8 +80,8 @@ export function stopwatchViewSetup() {
         // Pauses the timer if it is not paused
         if (!paused) {
             paused = true;
-            flagButton.disabled = true;
-            flagButton.classList.remove('active-fill');
+            lapButton.disabled = true;
+            lapButton.classList.remove('active-fill');
             pauseTimer();
             return;
         }
@@ -90,8 +91,8 @@ export function stopwatchViewSetup() {
             resetButton.disabled = false;
         }
         // Disables flag button when timer is paused
-        flagButton.disabled = false;
-        flagButton.classList.add('active-fill');
+        lapButton.disabled = false;
+        lapButton.classList.add('active-fill');
         // Updates timer state
         paused = false;
         isRunning = true;
@@ -110,12 +111,13 @@ export function stopwatchViewSetup() {
         // Disables and resets flag time track and reset button states to disabled on reset
         resetButton.classList.toggle('active-stroke');
         resetButton.disabled = true;
-        flagButton.disabled = true;
-        flagButton.classList.remove('active-fill');
+        lapButton.disabled = true;
+        lapButton.classList.remove('active-fill');
         // Updates timer status
         paused = true;
         isRunning = false;
         // Resets main timer elements
+        lapHeaders.textContent = ''
         lapTimers.textContent = ''
         hoursElement.textContent = '00'
         minutesElement.textContent = '00'
@@ -125,33 +127,18 @@ export function stopwatchViewSetup() {
         resetTimer();
     })
 
-    flagButton.addEventListener('click', () => {
+    lapButton.addEventListener('click', () => {
         lapTimer((lapCount, currentLapTime, totalTime, isFastest, isSlowest) => {
-            if (!lapTimers.firstChild) {
-                const timesTrackerElement = createTimeTrackerElement(lapCount, currentLapTime, totalTime);
-                lapTimers.appendChild(timesTrackerElement);
+            if (!lapHeaders.firstChild && !lapTimers.firstChild) {
+                const lapHeadersElement = createLapHeader();
+                const lapTracker = createLapTracker(lapCount, currentLapTime, totalTime);
+                lapHeaders.append(lapHeadersElement);
+                lapTimers.append(lapTracker);
                 return;
             }
-
-            const lapsUl = document.getElementById('laps');
-            const timeUl = document.getElementById('time');
-            const totalUl = document.getElementById('total');
-            const lapCountLi = document.createElement('li');
-            const lapCountSpan = createElementWithText('span', lapCount);
-            lapCountLi.append(lapCountSpan);
-            const timeLi = createElementWithText('li', currentLapTime);
-            const totalLi = createElementWithText('li', totalTime);
-            if (isFastest) {
-                lapCountLi.append(document.getElementById('fastest'));
-            }
-
-            if (isSlowest) {
-                lapCountLi.append(document.getElementById('slowest'));
-            }
-
-            lapsUl.append(lapCountLi);
-            timeUl.append(timeLi);
-            totalUl.append(totalLi);
+            const lapsTracker = document.getElementById('laps-tracker');
+            const lapRowElement = createLapRowElement(lapCount, currentLapTime, totalTime, isFastest, isSlowest);
+            lapsTracker.append(lapRowElement);
         });
     })
 }
