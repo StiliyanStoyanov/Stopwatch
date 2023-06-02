@@ -54,7 +54,7 @@
       <button id="start-pause-button" class="flex">
         <div class="flex start-pause"></div>
       </button>
-      <button type="button" id="flag-button" class="button" disabled="true">
+      <button type="button" id="lap-button" class="button" disabled="true">
         <svg viewBox="0 0 512 512">
           <g transform="translate(148.000000, 85.333333)">
             <path
@@ -72,60 +72,33 @@
         </svg>
       </button>
     </div>
-    <div id="lap-headers" class="inner-width">
-      <h3>Laps</h3>
-      <h3>Time</h3>
-      <h3>Total</h3>
-    </div>
-    <div id="lap-container">
-      <div id="times-tracker" class="flex space-between inner-width">
-        <ul id="laps">
-          <li><span>1</span></li>
-          <li><span>2</span></li>
-          <li><span>3</span></li>
-          <li><span>4</span></li>
-          <li><span>5</span><span id="slowest">&nbsp;Slowest</span></li>
-          <li><span>6</span></li>
-          <li><span>7</span></li>
-          <li><span>8</span></li>
-          <li><span>9</span></li>
-          <li><span>10</span><span id="fastest">&nbsp;Fastest</span></li>
-          <li><span>11</span></li>
-          <li><span>12</span></li>
-        </ul>
-        <ul id="time">
-          <li>
-            <span>00:00:00:50</span>
-          </li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:20</li>
-          <li>00:00:01:00</li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:30</li>
-          <li>00:00:00:10</li>
-          <li>00:00:00:20</li>
-          <li>00:00:00:30</li>
-        </ul>
-        <ul id="total">
-          <li><span> 00:00:00:50</span></li>
-          <li>00:00:00:70</li>
-          <li>00:00:00:90</li>
-          <li>00:00:01:10</li>
-          <li>00:00:02:10</li>
-          <li>00:00:02:30</li>
-          <li>00:00:02:50</li>
-          <li>00:00:02:70</li>
-          <li>00:00:03:00</li>
-          <li>00:00:03:10</li>
-          <li>00:00:03:30</li>
-          <li>00:00:03:60</li>
-        </ul>
+    <div id="laps-headers" class="laps-container">
+      <div class="lap-row laps-inner-container">
+        <h3>Laps</h3>
+        <h3>Time</h3>
+        <h3>Total</h3>
       </div>
     </div>
-  </div>
+    <div id="laps-timers" class="laps-container overflow">
+      <div id="laps-tracker" class="laps-inner-container">
+        <div class="lap-row">
+          <p>
+            <span>1</span>
+            <span id="fastest">Fastest</span>
+          </p>
+          <p>hh:mm:ss:ms</p>
+          <p>hh:mm:ss:ms</p>
+        </div>
+        <div class="lap-row">
+          <p>
+            <span>1</span>
+            <span id="fastest">Fastest</span>
+          </p>
+          <p>hh:mm:ss:ms</p>
+          <p>hh:mm:ss:ms</p>
+        </p>
+      </div>
+    </div>
 </body>
 
 </html>
