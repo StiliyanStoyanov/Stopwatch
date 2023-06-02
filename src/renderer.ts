@@ -1,10 +1,10 @@
-import "./styles/index.css";
-import "./styles/utility.css";
-import "./styles/buttons.css";
-import "./styles/scrollbar.css";
 import "./styles/timer.css";
+import "./styles/buttons.css";
 import "./styles/controlls.css";
 import "./styles/laps.css";
+import "./styles/scrollbar.css";
+import "./styles/utility.css";
+import "./styles/index.css";
 
 import { stopwatchViewSetup } from "./util/stopwatch";
 
