@@ -15,8 +15,9 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     useContentSize: true,
     minWidth: 225,
-    minHeight: 140,
+    minHeight: 160,
     alwaysOnTop: false,
+    icon: './src/images/icon.ico',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
