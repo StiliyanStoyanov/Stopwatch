@@ -13,9 +13,23 @@ const config: ForgeConfig = {
     icon: './src/images/icon'
   },
   rebuildConfig: {},
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'StiliyanStyoanov',
+          name: 'stopwatch'
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ],
   makers: [
     new MakerSquirrel({
       setupIcon: './src/images/icon.ico',
+      iconUrl: 'https://raw.githubusercontent.com/StiliyanStoyanov/stopwatch/main/src/images/icon.ico'
     }),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
