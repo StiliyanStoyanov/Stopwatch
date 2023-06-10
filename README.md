@@ -16,3 +16,5 @@
 ### Responsive layout
 ![Alt Text](https://raw.githubusercontent.com/StiliyanStoyanov/stopwatch/main/preview/responsive-layout.gif)
 
+---
+
