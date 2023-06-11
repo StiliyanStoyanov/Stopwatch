@@ -21,7 +21,6 @@ const config: ForgeConfig = {
           owner: 'StiliyanStyoanov',
           name: 'stopwatch'
         },
-        prerelease: false,
         draft: true
       }
     }
