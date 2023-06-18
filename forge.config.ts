@@ -10,9 +10,7 @@ import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
-  packagerConfig: {
-    icon: './src/images/icon'
-  },
+  packagerConfig: {},
   rebuildConfig: {},
   publishers: [
     {
@@ -27,16 +25,13 @@ const config: ForgeConfig = {
   ],
   makers: [
     new MakerSquirrel({
+      name: 'stopwatch',
       setupIcon: './src/images/icon.ico',
       iconUrl: 'https://raw.githubusercontent.com/StiliyanStoyanov/stopwatch/main/src/images/icon.ico'
     }),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
-    new MakerDeb({
-      options: {
-        icon: './src/images/icon.png',
-      },
-    })
+    new MakerDeb({})
   ],
   plugins: [
     new WebpackPlugin({
