@@ -19,7 +19,7 @@ const config: ForgeConfig = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'StiliyanStyoanov',
+          owner: 'StiliyanStoyanov',
           name: 'stopwatch'
         },
       }
