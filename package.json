@@ -11,7 +11,7 @@
     "lint": "eslint --ext .ts,.tsx ."
   },
   "repository": "https://github.com/StiliyanStoyanov/stopwatch",
-  "author": "Stiliyan Stoyanov",
+  "author": "StiliyanStoyanov",
   "license": "MIT",
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",
