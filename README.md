@@ -1,5 +1,5 @@
 # A simple stopwatch application build with electorn and typescript
-## Fuctionality preview
+## Functionality preview
 ### Play, pause and reset
 ![Alt Text](https://raw.githubusercontent.com/StiliyanStoyanov/stopwatch/main/preview/play-pause-reset.gif)
 
